@@ -21,11 +21,9 @@ jobs:
         python-version: 3.9
     - name: Set up the environment
       run: |
-        cd
         mkdir .kaggle
-        ls -al
         echo "$KAGGLE_JSON" > ~/.kaggle/kaggle.json
-        chmod 600 /home/sal/.kaggle/kaggle.json
+        chmod 600 ~/.kaggle/kaggle.json
       env:
         KAGGLE_JSON: ${{secrets.KAGGLE_JSON}}
     - name: Install dependencies

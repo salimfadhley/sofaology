@@ -38,4 +38,5 @@ jobs:
     - name: Upload data to kaggle
       run: |
         cd output
+        ls -al
         kaggle datasets version -m "automatic update"

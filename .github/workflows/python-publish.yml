@@ -24,10 +24,20 @@ jobs:
         python -m pip install --upgrade pip
         pip install setuptools wheel twine
     - name: Build and publish
-#      env:
-#        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-#        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
         python -m pip install -r requirements.txt
         python sofas.py
         ls -al
+    - name: Upload datasets
+      uses: jaimevalero/push-kaggle-dataset@v1.0.3 # This is the action
+      env:
+        # Do not leak your credentials.
+        KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+      with:
+        id: "jaimevalero/my-new-dataset"
+        title: "Sofaology clearance stock"
+        subtitle: "Sofas on sale in the UK"
+        description: "These are all the sofas currently on sale at Sofaology in the UK"
+        files: clearance.csv
+        is_public: true

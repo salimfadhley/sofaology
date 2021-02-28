@@ -1,6 +1,8 @@
 import csv
 import itertools
 import logging
+from pathlib import Path
+
 import requests
 
 log = logging.getLogger(__name__)
@@ -47,8 +49,13 @@ def get_clearance_products():
 
 
 def main():
+    output_dir = Path("output")
+    output_dir.mkdir(exist_ok=True)
+    output_path = output_dir / "clearance.csv"
+
     products, products1 = itertools.tee(get_clearance_products())
-    with open("clearance.csv", "w") as f:
+
+    with output_path.open("w") as f:
         writer = csv.DictWriter(f, fieldnames=next(products1).keys())
         writer.writeheader()
         writer.writerows(products)

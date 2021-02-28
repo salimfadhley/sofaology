@@ -12,7 +12,7 @@ on:
     - cron: "4 * * * *"
 
 jobs:
-  deploy:
+  upload:
 
     runs-on: ubuntu-latest
 
@@ -32,7 +32,7 @@ jobs:
         python sofas.py
         ls -al
     - name: Upload datasets
-      uses: jaimevalero/push-kaggle-dataset@v1
+      uses: jaimevalero/push-kaggle-dataset@v1.0.3
       env:
         # Do not leak your credentials.
         KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}

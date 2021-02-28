@@ -34,16 +34,7 @@ jobs:
         python -m pip install -r requirements.txt
         python sofas.py
         ls -al
-    - name: Upload datasets
-      uses: jaimevalero/push-kaggle-dataset@v1.0.3
-      env:
-        # Do not leak your credentials.
-        KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-      with:
-        id: "salimfadhley/sofaloogy_clearance"
-        title: "Sofaology clearance stock"
-        subtitle: "Sofas on sale in the UK"
-        description: "These are all the sofas currently on sale at Sofaology in the UK"
-        files: clearance.csv
-        is_public: true
+    - name: Upload data to kaggle
+      run: |
+        cd output
+        kaggle datasets version -m "automatic update"

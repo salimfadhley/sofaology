@@ -21,7 +21,7 @@ jobs:
         python-version: 3.9
     - name: Set up the environment
       run: |
-        mkdir .kaggle
+        mkdir -p ~/.kaggle
         echo "$KAGGLE_JSON" > ~/.kaggle/kaggle.json
         chmod 600 ~/.kaggle/kaggle.json
       env:

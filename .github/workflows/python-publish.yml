@@ -20,7 +20,9 @@ jobs:
       with:
         python-version: 3.9
     - run: |
-        mkdir ~/.kaggle
+        cd
+        mkdir .kaggle
+        ls -al
         echo $KAGGLE_JSON > ~/.kaggle/kaggle.json
         chmod 600 /home/sal/.kaggle/kaggle.json
       env:
